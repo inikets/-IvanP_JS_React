@@ -1,13 +1,17 @@
 console.log("Marik");
 
-let NumberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
-console.log(NumberOfFilms);
+let NumberOfFilms;
 
-//let LastMovie = prompt('Один из последних просмотрных фильмов?','');
-//let GradeMovie = prompt('На сколько оцените его?','');
+function start() {
+    NumberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
 
-//let LastMovie2 = prompt('Один из последних просмотрных фильмов?','');
-//let GradeMovie2 = prompt('На сколько оцените его?','');
+    while (NumberOfFilms == '' || NumberOfFilms == null || isNaN(NumberOfFilms)) {
+    NumberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+    }
+}
+
+start();
+
 
 personalMovieDB = {
     count: NumberOfFilms,
@@ -20,40 +24,52 @@ personalMovieDB = {
 //personalMovieDB.movies[LastMovie] = GradeMovie;
 //personalMovieDB.movies[LastMovie2] = GradeMovie2;
 
-console.log(personalMovieDB);
+//console.log(personalMovieDB);
 
-// for (let i = 0; i < 1; i++){
-//     let LastMovie = prompt('Один из последних просмотрных фильмов?','');
-//     let GradeMovie = prompt('На сколько оцените его?','');
 
-//     if (LastMovie.length < 50 && LastMovie != null && LastMovie != '' && GradeMovie != null && GradeMovie != '') {
-//         personalMovieDB.movies[LastMovie] = GradeMovie;
-//     } else {
-//         i--;
-//     }
-// };
-
-if (personalMovieDB.count < 10) {
-    alert ('Вы посмотрели очень мало фильмов')
-}  else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-    alert ('Вы классический зритель')
-}  else if (personalMovieDB.count >= 30) {
-    alert ('Вы киноман')
-}  else {
-    alert ('Error')
-};
-
-let a = 0;
-
-do {
-    let LastMovie = prompt('Один из последних просмотрных фильмов?','');
-    let GradeMovie = prompt('На сколько оцените его?','');
-
-    if (LastMovie.length < 50 && LastMovie != null && LastMovie != '' && GradeMovie != null && GradeMovie != '') {
-        personalMovieDB.movies[LastMovie] = GradeMovie;
-    } else {
-        a--;
-    }   
-a++;
+function rememberMyFilms() {
+    for (let i = 0; i < 0; i++){
+        let LastMovie = prompt('Один из последних просмотрных фильмов?','');
+        let GradeMovie = prompt('На сколько оцените его?','');
+    
+        if (LastMovie.length < 50 && LastMovie != null && LastMovie != '' && GradeMovie != null && GradeMovie != '') {
+            personalMovieDB.movies[LastMovie] = GradeMovie;
+        } else {
+            i--;
+        }
+    }; 
 }
-while (a < 2);
+
+rememberMyFilms();
+
+function detectPersonalLevel() {
+    if (personalMovieDB.count < 10) {
+        alert ('Вы посмотрели очень мало фильмов')
+    }  else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+        alert ('Вы классический зритель')
+    }  else if (personalMovieDB.count >= 30) {
+        alert ('Вы киноман')
+    }  else {
+        alert ('Error')
+    };
+}
+
+detectPersonalLevel();
+
+function showMyDB(hidden) {
+    if (!hidden) {
+        console.log(personalMovieDB)
+    };
+}
+
+showMyDB(personalMovieDB.privat);
+
+function writeYourGenres() {
+    for (let i = 1; i < 4; i++) {
+        let genr = prompt(`Ваш лыбимый жанр под номером ${i}`,"");
+        personalMovieDB.genres[i - 1] = genr;
+    }
+    
+}
+
+writeYourGenres();
